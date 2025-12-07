@@ -3,7 +3,7 @@ local StatConfig = {
         datastoreName = "WoodStore",
         displayName = "wood",
         leaderstatName = "Wood",
-        color = Color3.fromRGB(255, 255, 255),
+        color = Color3.fromRGB(213, 176, 124),
     },
     {
         datastoreName = "LeafStore",
