@@ -54,9 +54,11 @@ local function createOverheadGui(character: Model, player: Player)
 			if not leaderstats then
 				return
 			end
-			local statValue = leaderstats:FindFirstChild(statName)
-			if statValue and statValue:IsA("IntValue") then
+			local statValue = leaderstats:WaitForChild(statName)
+			if statValue:IsA("IntValue") then
 				statValue:GetPropertyChangedSignal("Value"):Connect(updateLabel)
+				
+			updateLabel()
 			end
 		end
 		updateLabel()
