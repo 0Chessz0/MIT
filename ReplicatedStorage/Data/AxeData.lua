@@ -74,14 +74,14 @@ local AxeData = {
 		name = "Obsidian Axe",
 	},
 
-	StellarAxe = { -- White/bright diorite-like
+	StellarAxe = {
 		damage = 75,
 		cost = 25000,
 		logo = AxeLogos:WaitForChild("StellarAxe"),
 		name = "Stellar Axe",
 	},
 
-	MultiVerseAxe = { -- Galaxy-themed final axe
+	MultiVerseAxe = {
 		damage = 100,
 		cost = 50000,
 		logo = AxeLogos:WaitForChild("MultiverseAxe"),

@@ -2,7 +2,7 @@
 local TreeData = {}
 
 TreeData["LeafDropChance"] ={
-	chance = 100,
+	chance = 50,
 }
 
 TreeData["TinyTree"] = {
@@ -23,6 +23,6 @@ TreeData["BigTree"] = {
 	health = 10,
 	respawnTime = 3,
 	treeName = "BigTree",
-	woodAmount = 3
+	woodAmount = 500
 }
 return TreeData
