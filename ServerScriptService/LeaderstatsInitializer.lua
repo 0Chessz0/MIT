@@ -22,9 +22,20 @@ local function setupLeaderstats(player: Player)
 		local statName = entry.leaderstatName or entry.datastoreName
 		local statValue = leaderstats:FindFirstChild(statName)
 		if not statValue then
-			statValue = Instance.new("IntValue")
+			if entry.datastoreName == "PlankStore" or statName == "Planks" then
+				statValue = Instance.new("NumberValue")
+			else
+				statValue = Instance.new("IntValue")
+			end
 			statValue.Name = statName
 			statValue.Parent = leaderstats
+		elseif statValue:IsA("IntValue") and (entry.datastoreName == "PlankStore" or statName == "Planks") then
+			local newValue = Instance.new("NumberValue")
+			newValue.Name = statValue.Name
+			newValue.Value = statValue.Value
+			newValue.Parent = leaderstats
+			statValue:Destroy()
+			statValue = newValue
 		end
 		local dataStore = DataStoreService:GetDataStore(entry.datastoreName)
 		local success, value = pcall(function()

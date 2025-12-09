@@ -26,29 +26,31 @@ local function convertWood(player)
 	local plankStat = leaderstats:FindFirstChild("Planks")
 	if not woodStat or not plankStat then return end
 
-	local currentWood = woodStat.Value
-	local planksToAdd = math.floor(currentWood / 100)
-	if planksToAdd <= 0 then return end
+	local currentWood = woodStat.Value or 0
+	if currentWood <= 0 then return end
 
-	local woodToRemove = planksToAdd * 100
-	local userIdStr    = tostring(player.UserId)
+	local planksToAdd = currentWood / 100
+	local userIdStr   = tostring(player.UserId)
 
-	local woodSuccess, newWoodTotal = pcall(function()
-		return woodStore:IncrementAsync(userIdStr, -woodToRemove)
+	pcall(function()
+		woodStore:IncrementAsync(userIdStr, -currentWood)
 	end)
-	local planksSuccess, newPlankTotal = pcall(function()
-		return plankStore:IncrementAsync(userIdStr, planksToAdd)
+	pcall(function()
+		plankStore:IncrementAsync(userIdStr, planksToAdd)
 	end)
 
-	if woodSuccess and typeof(newWoodTotal) == "number" then
-		woodStat.Value = newWoodTotal
-	else
-		woodStat.Value = woodStat.Value - woodToRemove
-	end
-	if planksSuccess and typeof(newPlankTotal) == "number" then
-		plankStat.Value = newPlankTotal
-	else
-		plankStat.Value = plankStat.Value + planksToAdd
+	woodStat.Value = 0
+	plankStat.Value = plankStat.Value + planksToAdd
+
+	local leafStat = leaderstats:FindFirstChild("Leafs") or leaderstats:FindFirstChild("Leaves") or leaderstats:FindFirstChild("Leaf")
+	if leafStat then
+		local currentLeafs = leafStat.Value or 0
+		leafStat.Value = 0
+
+		local leafStore = DataStoreService:GetDataStore("LeafStore")
+		pcall(function()
+			leafStore:IncrementAsync(userIdStr, -currentLeafs)
+		end)
 	end
 end
 

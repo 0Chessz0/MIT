@@ -43,7 +43,11 @@ local function createOverheadGui(character: Model, player: Player)
 				return
 			end
 			local statValue = leaderstats:FindFirstChild(statName)
-			if statValue and statValue:IsA("IntValue") then
+			-- Display values for IntValue and NumberValue. If the stat uses
+			-- a NumberValue or an IntValue (which may hold fractional planks),
+			-- then show the numeric value directly; otherwise default to 0.
+			if statValue and (statValue:IsA("IntValue") or statValue:IsA("NumberValue")) then
+				-- use tostring to preserve fractional part when present
 				label.Text = tostring(statValue.Value) .. " " .. displayName
 			else
 				label.Text = "0 " .. displayName
@@ -55,10 +59,11 @@ local function createOverheadGui(character: Model, player: Player)
 				return
 			end
 			local statValue = leaderstats:WaitForChild(statName)
-			if statValue:IsA("IntValue") then
+			-- connect update handlers for both IntValue and NumberValue so
+			-- the label refreshes when the value changes.
+			if statValue:IsA("IntValue") or statValue:IsA("NumberValue") then
 				statValue:GetPropertyChangedSignal("Value"):Connect(updateLabel)
-				
-			updateLabel()
+				updateLabel()
 			end
 		end
 		updateLabel()
