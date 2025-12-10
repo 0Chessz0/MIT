@@ -36,7 +36,12 @@ local function convertWood(player)
 		woodStore:IncrementAsync(userIdStr, -currentWood)
 	end)
 	pcall(function()
-		plankStore:IncrementAsync(userIdStr, planksToAdd)
+		plankStore:UpdateAsync(userIdStr, function(oldValue)
+			if typeof(oldValue) ~= "number" then
+				oldValue = 0
+			end
+			return oldValue + planksToAdd
+		end)
 	end)
 
 	woodStat.Value = 0
