@@ -8,7 +8,7 @@ local UpgradeData = {
 		UpgradeLimit = 1000, -- max amount of upgrades
 		StartingAmount = 3, -- starting price
 		PriceMulti = 1.333333, -- by how much the price should multiply everytime
-		BoostMulti = 2, -- by how much the multi increases every upgrade
+		BoostMulti = UpgradeCount * 0.25 + 1, -- by how much the multi increases every upgrade
 
 		GrowthBoost = true, --true or false
 		GrowthMulti = 2, -- by how much it doubles the multi
@@ -24,7 +24,7 @@ local UpgradeData = {
 		UpgradeLimit = 1000,
 		StartingAmount = 3,
 		PriceMulti = 1.333333,
-		BoostMulti = 2,
+		BoostMulti = UpgradeCount * 0.25 + 1,
 
 		GrowthBoost = true,
 		GrowthMulti = 2,
@@ -40,7 +40,7 @@ local UpgradeData = {
 		UpgradeLimit = 1000,
 		StartingAmount = 3,
 		PriceMulti = 1.333333,
-		BoostMulti = 2,
+		BoostMulti = UpgradeCount * 0.25 + 1,
 
 		GrowthBoost = true,
 		GrowthMulti = 2,
@@ -56,7 +56,7 @@ local UpgradeData = {
 		UpgradeLimit = 1000,
 		StartingAmount = 3,
 		PriceMulti = 1.333333,
-		BoostMulti = 2,
+		BoostMulti = UpgradeCount * 0.25 + 1,
 
 		GrowthBoost = true,
 		GrowthMulti = 2,
